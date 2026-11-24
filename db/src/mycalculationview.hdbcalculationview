@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="mycalculationview" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="Book inventory values (price x stock)"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="my_bookshop_Books" type="DATA_BASE_TABLE">
+    <viewAttributes allViewAttributes="true"/>
+    <columnObject columnObjectName="my_bookshop_Books"/>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="COLUMN_ENGINE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <descriptions/>
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="TITLE"/>
+      <viewAttribute id="AUTHOR"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="STOCK"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="#my_bookshop_Books">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TITLE" source="title"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AUTHOR" source="author"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="price"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STOCK" source="stock"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ID"/>
+    </attribute>
+    <attribute id="TITLE" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Title"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TITLE"/>
+    </attribute>
+    <attribute id="AUTHOR" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="Author"/>
+      <keyMapping columnObjectName="Projection_1" columnName="AUTHOR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PRICE" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Price"/>
+      <measureMapping columnObjectName="Projection_1" columnName="PRICE"/>
+    </measure>
+    <measure id="STOCK" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Stock"/>
+      <measureMapping columnObjectName="Projection_1" columnName="STOCK"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="TOTAL_VALUE" order="6" aggregationType="sum" type="CALCULATED" measureType="amount">
+      <descriptions defaultDescription="Total Value (price x stock)"/>
+      <formula>&quot;PRICE&quot; * &quot;STOCK&quot;</formula>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="40" y="220"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
