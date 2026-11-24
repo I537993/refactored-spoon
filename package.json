@@ -1,0 +1,23 @@
+{
+  "name": "owner",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "build": "mbt build",
+    "deploy": "cf deploy mta_archives/owner_1.0.0.mtar -f --delete-services --retries 0"
+  },
+  "private": true,
+  "allowScripts": {
+    "@cap-js/sqlite": true,
+    "better-sqlite3": true
+  }
+}
