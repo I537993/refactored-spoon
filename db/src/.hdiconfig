@@ -5,6 +5,9 @@
     },
     "hdbcalculationview": {
       "plugin_name": "com.sap.hana.di.calculationview"
+    },
+    "hdbrole": {
+      "plugin_name": "com.sap.hana.di.role"
     }
   }
 }
