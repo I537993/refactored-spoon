@@ -1,0 +1,7 @@
+VIEW BOOKS_SRC AS SELECT
+  ID,
+  title  AS TITLE,
+  author AS AUTHOR,
+  price  AS PRICE,
+  stock  AS STOCK
+FROM my_bookshop_Books

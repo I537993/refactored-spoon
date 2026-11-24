@@ -1,0 +1,10 @@
+{
+  "file_suffixes": {
+    "hdbview": {
+      "plugin_name": "com.sap.hana.di.view"
+    },
+    "hdbcalculationview": {
+      "plugin_name": "com.sap.hana.di.calculationview"
+    }
+  }
+}
